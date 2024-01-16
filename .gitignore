@@ -1,0 +1,16 @@
+# Ignore __pycache__ folders in the root directory
+__pycache__/
+
+# Ignore __pycache__ folders anywhere in the repository
+**/__pycache__/
+
+# Ignore compiled Python files (.pyc) in the root directory
+*.pyc
+
+# Ignore compiled Python files (.pyc) anywhere in the repository
+**/*.pyc
+
+
+
+
+
