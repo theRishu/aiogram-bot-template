@@ -4,4 +4,4 @@ echo_router = Router()
 
 @echo_router.message(F.text)
 async def bot_echo(message: types.Message):
-    await message.answer(message.text)
+    await message.answer("Press  /start to continue")

@@ -5,8 +5,6 @@ from config import DB_URI
 
 engine = create_async_engine(DB_URI,
     query_cache_size=1200,
-    pool_size=2,
-    max_overflow=200,
     future=True,
     echo=False)
 

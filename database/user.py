@@ -16,10 +16,12 @@ async def add_user(user_id: int) -> None:
         await session.execute(insert_stmt)
         await session.commit()
 
+
+
 async def update_bonus_count(user_id: int):
     async with async_session() as session:
         try:
-            stmt = (update(User).where(User.user_id == user_id).values(bonus_count=User.bonus_count + 10))
+            stmt = (update(User).where(User.user_id == user_id).values(balance=User.balance + 200  , invited_count = User.invited_count +1))
             await session.execute(stmt)
             await session.commit()
         except Exception as e:
@@ -63,3 +65,30 @@ async def get_all_user_ids():
         user_ids = [row[0] for row in result.fetchall()]
         return user_ids
 
+async def user_joined_channel(user_id: int):
+    async with async_session() as session:
+        try:
+            stmt = (
+                update(User)
+                .where(User.user_id == user_id)
+                .values(balance=User.balance + 300, joined=True)
+            )
+            await session.execute(stmt)
+            await session.commit()
+        except Exception as e:
+            print(f"Error updating bonus count: {str(e)}")
+
+
+
+async def user_viewed(user_id: int):
+    async with async_session() as session:
+        try:
+            stmt = (
+                update(User)
+                .where(User.user_id == user_id)
+                .values(balance=User.balance + 100, viewed=True)
+            )
+            await session.execute(stmt)
+            await session.commit()
+        except Exception as e:
+            print(f"Error updating bonus count: {str(e)}")
